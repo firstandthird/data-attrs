@@ -1,0 +1,23 @@
+{
+  "name": "data-attrs",
+  "description": "A few utilities for data attributes",
+  "version": "0.0.1",
+  "homepage": "https://github.com/firstandthird/data-attrs",
+  "license": "MIT",
+  "copyright": "First+Third",
+  "main": "dist/data-attrs.bower.js",
+  "dependencies": {
+    "jquery": "1.*"
+  },
+  "devDependencies": {
+    "chai": "~1.9.1"
+  },
+  "ignore": [
+    "test",
+    "example",
+    "lib",
+    "Gruntfile.js",
+    "package.json",
+    "grunt"
+  ]
+}
