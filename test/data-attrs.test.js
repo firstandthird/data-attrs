@@ -1,7 +1,7 @@
 /*global describe,it,expect,before*/
 describe('data-attrs', function() {
 
-  describe('named', function() {
+  describe('$.named', function() {
 
     it('should return the element', function(done) {
       var el = $.named('element1');
@@ -40,7 +40,7 @@ describe('data-attrs', function() {
     });
   });
 
-  describe('action', function() {
+  describe('$.action', function() {
 
     before(function(done) {
       $('a').off('click');
