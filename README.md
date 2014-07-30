@@ -2,11 +2,17 @@
 
 A set of utility plugins to deal with data attributes.  Data attributes are great when you want to separate your javascript completely from IDs and classes.
 
-## $.named
+## Install
+
+`bower install data-attrs --save`
+
+## Utilities
+
+### $.named
 
 `$.named('element')` will search for `<div data-name="element"></div>`
 
-## $.action
+### $.action
 
 `$.action('delete', handler)` will get called when `<a data-action="delete">Delete</a>` is clicked.
 
@@ -19,7 +25,7 @@ $.action('approve', function(el, values) {
 });
 ```
 
-## Declaritive Plugins
+### Declaritive Plugins
 
 Declaritive Plugins will automatically bind elements to jQuery plugins.
 
