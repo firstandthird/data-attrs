@@ -71,4 +71,52 @@ describe('data-attrs', function() {
     });
   });
 
+  describe('$.declaritivePlugins', function() {
+
+    before(function() {
+      $.declaritivePlugins.skipWindowLoad = true;
+    });
+
+    it('should not throw on invalid plugin', function(done) {
+      $.declaritivePlugins();
+      done();
+    });
+
+    it('should auto bind to a plugin', function(done) {
+      $.fn.dummyPlugin1 = function() {
+        var el = $(this);
+        expect(el.data('plugin')).to.equal('dummyPlugin1');
+        done();
+      };
+      $.declaritivePlugins();
+      expect($('[data-plugin=dummyPlugin1]').data('plugins')).to.deep.equal([
+        'dummyPlugin1'
+      ]);
+    });
+
+    it('should not bind twice', function(done) {
+      $.declaritivePlugins();
+      expect($('[data-plugin=dummyPlugin1]').data('plugins')).to.deep.equal([
+        'dummyPlugin1'
+      ]);
+      done();
+    });
+
+    it('should pass in values to a plugin', function(done) {
+      $.fn.dummyPlugin2 = function(options) {
+        var el = $(this);
+        expect(el.data('plugin')).to.equal('dummyPlugin2');
+        expect(options).to.deep.equal({
+          name: 'Bob',
+          age: '26'
+        });
+        done();
+      };
+      $.declaritivePlugins();
+      expect($('[data-plugin=dummyPlugin2]').data('plugins')).to.deep.equal([
+        'dummyPlugin2'
+      ]);
+    });
+  });
+
 });
