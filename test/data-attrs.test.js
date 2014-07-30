@@ -20,6 +20,26 @@ describe('data-attrs', function() {
     });
   });
 
+  describe('$.fn.serializeAttrs', function() {
+
+    it('should return the values for an element', function() {
+      var values = $.named('attrValues').serializeAttrs('attr');
+      expect(values).to.deep.equal({
+        test: '123',
+        val: 'blah'
+      });
+    });
+
+    it('should return all data values if nothing passed', function() {
+      var values = $.named('attrValues').serializeAttrs();
+      expect(values).to.deep.equal({
+        name: 'attrValues',
+        'attr-test': '123',
+        'attr-val': 'blah'
+      });
+    });
+  });
+
   describe('action', function() {
 
     before(function(done) {
