@@ -1,4 +1,10 @@
 
+0.2.0 / 2014-08-08 
+==================
+
+  * turn dashes into camel case for serializeAttrs
+  * updated readme
+
 0.1.0 / 2014-07-30 
 ==================
 

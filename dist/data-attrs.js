@@ -1,6 +1,6 @@
 /*!
  * data-attrs - A few utilities for data attributes
- * v0.1.0
+ * v0.2.0
  * https://github.com/firstandthird/data-attrs
  * copyright First+Third 2014
  * MIT License
@@ -20,7 +20,7 @@
     var values = {};
     $.each(attributes, function(index, attr) {
       if (attr.name.indexOf(attrKey) != -1) {
-        var name = attr.name.replace(attrKey, '');
+        var name = $.camelCase(attr.name.replace(attrKey, ''));
         var value = el.attr(attr.name);
         values[name] = value;
       }
