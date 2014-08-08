@@ -26,7 +26,8 @@ describe('data-attrs', function() {
       var values = $.named('attrValues').serializeAttrs('attr');
       expect(values).to.deep.equal({
         test: '123',
-        val: 'blah'
+        val: 'blah',
+        multiWord: 'test'
       });
     });
 
@@ -34,8 +35,9 @@ describe('data-attrs', function() {
       var values = $.named('attrValues').serializeAttrs();
       expect(values).to.deep.equal({
         name: 'attrValues',
-        'attr-test': '123',
-        'attr-val': 'blah'
+        'attrTest': '123',
+        'attrVal': 'blah',
+        'attrMultiWord': 'test'
       });
     });
   });
