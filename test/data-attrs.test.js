@@ -119,6 +119,24 @@ describe('data-attrs', function() {
         'dummyPlugin2'
       ]);
     });
+
+    it('should trigger event on binding', function(done) {
+
+      $.fn.dummyPlugin3 = function() {
+      };
+      $('[data-plugin=dummyPlugin3]').on('declaritive:init', function(e, name, options) {
+        //this should be element
+        expect($(this).length).to.equal(1);
+        expect(name).to.equal('dummyPlugin3');
+        expect(options).to.deep.equal({
+          name: 'Bob'
+        });
+        done();
+      });
+
+      $.declaritivePlugins();
+    });
+
   });
 
 });
