@@ -1,4 +1,10 @@
 
+0.3.0 / 2014-08-18 
+==================
+
+  * added declaritive:init event
+  * update ft-build and pass in port
+
 0.2.0 / 2014-08-08 
 ==================
 

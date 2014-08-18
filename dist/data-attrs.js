@@ -1,6 +1,6 @@
 /*!
  * data-attrs - A few utilities for data attributes
- * v0.2.0
+ * v0.3.0
  * https://github.com/firstandthird/data-attrs
  * copyright First+Third 2014
  * MIT License
@@ -54,6 +54,7 @@
       var values = el.serializeAttrs('plugin');
       el[pluginName](values);
       el.data('plugins').push(pluginName);
+      el.trigger('declaritive:init', [pluginName, values]);
     });
   };
   //on window load
