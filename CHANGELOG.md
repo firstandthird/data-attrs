@@ -1,4 +1,9 @@
 
+0.4.0 / 2014-08-18 
+==================
+
+  * changed from window load to dom ready and renamed to skipAutoLoad
+
 0.3.0 / 2014-08-18 
 ==================
 

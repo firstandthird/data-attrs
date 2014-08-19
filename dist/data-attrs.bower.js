@@ -1,6 +1,6 @@
 /*!
  * data-attrs - A few utilities for data attributes
- * v0.3.0
+ * v0.4.0
  * https://github.com/firstandthird/data-attrs
  * copyright First+Third 2014
  * MIT License
@@ -57,8 +57,8 @@
     });
   };
   //on window load
-  if (!$.declaritivePlugins.skipWindowLoad) {
-    $(window).load(function() {
+  if (!$.declaritivePlugins.skipAutoLoad) {
+    $(function() {
       $.declaritivePlugins();
     });
   }
