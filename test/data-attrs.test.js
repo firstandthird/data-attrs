@@ -76,7 +76,7 @@ describe('data-attrs', function() {
   describe('$.declaritivePlugins', function() {
 
     before(function() {
-      $.declaritivePlugins.skipWindowLoad = true;
+      $.declaritivePlugins.skipAutoLoad = true;
     });
 
     it('should not throw on invalid plugin', function(done) {
