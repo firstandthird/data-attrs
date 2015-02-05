@@ -1,4 +1,10 @@
 
+0.5.0 / 2015-02-04
+==================
+
+  * Merge pull request #2 from firstandthird/feature/delegate-event
+  * Delegates actions.
+
 0.4.0 / 2014-08-18 
 ==================
 

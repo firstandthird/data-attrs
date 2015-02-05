@@ -2,7 +2,7 @@
  * data-attrs - A few utilities for data attributes
  * v0.4.0
  * https://github.com/firstandthird/data-attrs
- * copyright First+Third 2014
+ * copyright First+Third 2015
  * MIT License
 */
 
@@ -30,7 +30,7 @@
 
   $.action = function(name, handler) {
 
-    $.named(name, 'action').on('click', function() {
+    $('body').on('click', '[data-action="'+name+'"]', function() {
       var el = $(this);
       var values = el.serializeAttrs('action');
       handler(el, values);
