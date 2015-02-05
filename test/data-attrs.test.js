@@ -71,6 +71,18 @@ describe('data-attrs', function() {
 
       $('[data-action="test-values"]').click();
     });
+
+    it('should delegate event', function(done) {
+      $('body').append('<a data-action="testDelegate"></a>');
+
+      var a = $('[data-action="testDelegate"]');
+      $.action('testDelegate', function(el) {
+        expect(el).to.not.equal(undefined);
+        done();
+      });
+
+      a.click();
+    });
   });
 
   describe('$.declaritivePlugins', function() {
