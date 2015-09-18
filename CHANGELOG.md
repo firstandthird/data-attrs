@@ -1,4 +1,9 @@
 
+1.0.0 / 2015-09-18
+==================
+
+  * pass el as this and first argument as event with $.action
+
 0.5.0 / 2015-02-04
 ==================
 

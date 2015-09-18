@@ -1,6 +1,6 @@
 /*!
  * data-attrs - A few utilities for data attributes
- * v0.4.0
+ * v1.0.0
  * https://github.com/firstandthird/data-attrs
  * copyright First+Third 2015
  * MIT License
@@ -29,10 +29,10 @@
 
   $.action = function(name, handler) {
 
-    $('body').on('click', '[data-action="'+name+'"]', function() {
+    $('body').on('click', '[data-action="'+name+'"]', function(e) {
       var el = $(this);
       var values = el.serializeAttrs('action');
-      handler(el, values);
+      handler.call(el, e, values);
     });
 
   };
