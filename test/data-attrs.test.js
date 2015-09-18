@@ -51,8 +51,9 @@ describe('data-attrs', function() {
 
     it('should trigger on click', function(done) {
       var a = $('[data-action="test"]');
-      $.action('test', function(el) {
-        expect(el).to.not.equal(undefined);
+      $.action('test', function(e) {
+        expect(this.data('action')).to.equal('test');
+        expect(typeof e.preventDefault).to.equal('function');
         done();
       });
 
@@ -60,8 +61,9 @@ describe('data-attrs', function() {
     });
 
     it('should pass back values', function(done) {
-      $.action('test-values', function(el, values) {
-        expect(el).to.not.equal(undefined);
+      $.action('test-values', function(e, values) {
+        expect(this.data('action')).to.equal('test-values');
+        expect(typeof e.preventDefault).to.equal('function');
         expect(values).to.deep.equal({
           id: '123',
           slug: 'blah'
@@ -76,8 +78,9 @@ describe('data-attrs', function() {
       $('body').append('<a data-action="testDelegate"></a>');
 
       var a = $('[data-action="testDelegate"]');
-      $.action('testDelegate', function(el) {
-        expect(el).to.not.equal(undefined);
+      $.action('testDelegate', function(e) {
+        expect(this.data('action')).to.equal('testDelegate');
+        expect(typeof e.preventDefault).to.equal('function');
         done();
       });
 
