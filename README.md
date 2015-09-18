@@ -19,8 +19,9 @@ A set of utility plugins to deal with data attributes.  Data attributes are grea
 If it will also pass back values, so if you had `<a data-action="approve" data-action-id="123">Approve</a>` you could have something like this:
 
 ```
-$.action('approve', function(el, values) {
-	//el is the a tag that was clicked
+$.action('approve', function(e, values) {
+	//this is the a tag that was clicked
+	//e is the click event
 	//values is an object that looks like { id: '123' }
 });
 ```
