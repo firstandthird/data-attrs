@@ -26,6 +26,10 @@ $.action('approve', function(e, values) {
 });
 ```
 
+#### Scoped Actions
+
+`$.action('delete', el, handler)` will get called when `<a data-action="delete">Delete</a>` is clicked inside `el`.
+
 ### $.module
 
 `$.module('name', function(el) {});` callback will only get called if the `data-module="name"` exists.

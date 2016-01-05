@@ -86,6 +86,23 @@ describe('data-attrs', function() {
 
       a.click();
     });
+
+    it('should allow for a scoped element and fire if inside that element', function(done) {
+      var scopedContainer = $.named('scopedAction');
+
+      var called = 0;
+      $.action('scoped', scopedContainer, function() {
+        called++;
+      });
+
+      scopedContainer.find('a').click();
+      $('#out-of-scope').click();
+      setTimeout(function() {
+        expect(called).to.equal(1);
+        done();
+      });
+    });
+
   });
 
   describe('$.declaritivePlugins', function() {
