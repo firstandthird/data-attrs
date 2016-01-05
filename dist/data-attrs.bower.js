@@ -1,8 +1,8 @@
 /*!
  * data-attrs - A few utilities for data attributes
- * v1.0.0
+ * v1.1.0
  * https://github.com/firstandthird/data-attrs
- * copyright First+Third 2015
+ * copyright First+Third 2016
  * MIT License
 */
 (function($) {
@@ -27,14 +27,29 @@
     return values;
   };
 
-  $.action = function(name, handler) {
+  $.action = function(name, scope, handler) {
+    if (!handler) {
+      handler = scope;
+      scope = 'body';
+    }
 
-    $('body').on('click', '[data-action="'+name+'"]', function(e) {
+    $(scope).on('click', '[data-action="'+name+'"]', function(e) {
       var el = $(this);
       var values = el.serializeAttrs('action');
       handler.call(el, e, values);
     });
 
+  };
+
+  $.module = function(name, callback) {
+
+    var mod = $('[data-module=' + name + ']');
+
+    mod.each(function() {
+      var el = $(this);
+      var values = el.serializeAttrs('module');
+      callback(el, values);
+    });
   };
 
   $.declaritivePlugins = function() {

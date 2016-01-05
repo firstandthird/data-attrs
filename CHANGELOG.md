@@ -1,4 +1,11 @@
 
+1.1.0 / 2016-01-05
+==================
+
+  * added support for scope in $.action
+  * added $.module
+  * updated readme
+
 1.0.0 / 2015-09-18
 ==================
 
