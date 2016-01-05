@@ -26,6 +26,10 @@ $.action('approve', function(e, values) {
 });
 ```
 
+### $.module
+
+`$.module('name', function(el) {});` callback will only get called if the `data-module="name"` exists.
+
 ### Declaritive Plugins
 
 Declaritive Plugins will automatically bind elements to jQuery plugins.

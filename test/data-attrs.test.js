@@ -154,4 +154,54 @@ describe('data-attrs', function() {
 
   });
 
+  describe('module', function() {
+    it('should call callback if data-module="name" exists', function(done) {
+      $.module('module', function(el, values) {
+
+        expect(el.attr('id')).to.equal('module');
+        expect(values).to.deep.equal({
+          value: '123'
+        });
+        done();
+
+      });
+    });
+
+    it('should not call callback if module doesnt exist', function(done) {
+      var called = false;
+      $.module('non-module', function() {
+        called = true;
+      });
+      setTimeout(function() {
+        expect(called).to.equal(false);
+        done();
+      });
+    });
+
+    it('should call callback for each module that matches name', function(done) {
+      var calls = 0;
+
+      $.module('multi-module', function(el, values) {
+
+        //see if first module
+        if (calls === 0) {
+          expect(values).to.deep.equal({
+            value: '123'
+          });
+        } else if (calls == 1) {
+          expect(values).to.deep.equal({
+            value: '456'
+          });
+        }
+
+        calls++;
+
+      });
+      setTimeout(function() {
+        expect(calls).to.equal(2);
+        done();
+      });
+    });
+  });
+
 });
