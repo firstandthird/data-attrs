@@ -1,4 +1,11 @@
 
+1.2.0 / 2016-01-06
+==================
+
+  * pass back named elements to $.module
+  * fixed tests, added support for scope
+  * Added object support
+
 1.1.0 / 2016-01-05
 ==================
 

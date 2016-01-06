@@ -28,10 +28,23 @@
   };
 
   $.action = function(name, scope, handler) {
+    if (typeof name === 'object') {
+      for(var action in name) {
+        if (!name.hasOwnProperty(action)) {
+          continue;
+        }
+
+        $.action(action, scope, name[action]);
+      }
+
+      return this;
+    }
+
     if (!handler) {
       handler = scope;
       scope = 'body';
     }
+    scope = scope || 'body';
 
     $(scope).on('click', '[data-action="'+name+'"]', function(e) {
       var el = $(this);
@@ -48,7 +61,12 @@
     mod.each(function() {
       var el = $(this);
       var values = el.serializeAttrs('module');
-      callback(el, values);
+      var els = {};
+      el.find('[data-name]').each(function() {
+        var subEl = $(this);
+        els[subEl.data('name')] = subEl;
+      });
+      callback(el, values, els);
     });
   };
 
