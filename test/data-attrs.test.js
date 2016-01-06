@@ -103,7 +103,7 @@ describe('data-attrs', function() {
       });
     });
 
-    it.skip('should trigger on click as object', function(done) {
+    it('should trigger on click as object', function(done) {
       var a = $('[data-action="test2"]');
       $.action({
         test2: function(e) {
@@ -114,6 +114,24 @@ describe('data-attrs', function() {
       });
 
       a.click();
+    });
+
+    it('should trigger on click as object scoped', function(done) {
+      var scopedContainer = $.named('scopedAction');
+
+      var called = 0;
+      $.action({
+        'scoped': function() {
+          called++;
+        }
+      }, scopedContainer);
+
+      scopedContainer.find('a').click();
+      $('#out-of-scope').click();
+      setTimeout(function() {
+        expect(called).to.equal(1);
+        done();
+      });
     });
 
   });
