@@ -103,6 +103,19 @@ describe('data-attrs', function() {
       });
     });
 
+    it.skip('should trigger on click as object', function(done) {
+      var a = $('[data-action="test2"]');
+      $.action({
+        test2: function(e) {
+          expect(this.data('action')).to.equal('test2');
+          expect(typeof e.preventDefault).to.equal('function');
+          done();
+        }
+      });
+
+      a.click();
+    });
+
   });
 
   describe('$.declaritivePlugins', function() {
