@@ -32,7 +32,20 @@ $.action('approve', function(e, values) {
 
 ### $.module
 
-`$.module('name', function(el) {});` callback will only get called if the `data-module="name"` exists.
+`$.module('name', function(el, values, els) {});` callback will only get called if the `data-module="name"` exists.
+
+It will also pass back any values and named elements. For example:
+
+```html
+<div id="module" data-module="module" data-module-value="123">
+  <div data-name="title">Title</div>
+  <p>Content</p>
+</div>
+```
+
+The callback will be called with:
+
+`callback(el, { value: '123' }, { title: titleEl });`
 
 ### Declaritive Plugins
 

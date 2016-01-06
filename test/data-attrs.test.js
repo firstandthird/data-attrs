@@ -250,6 +250,17 @@ describe('data-attrs', function() {
         done();
       });
     });
+
+    it('should return all data-name elements', function(done) {
+      $.module('module', function(el, values, els) {
+
+        expect(el.attr('id')).to.equal('module');
+        expect(els.title).to.not.equal(undefined);
+        expect(els.title.text()).to.equal('Title');
+        done();
+
+      });
+    });
   });
 
 });
