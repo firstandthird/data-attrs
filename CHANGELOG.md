@@ -1,4 +1,14 @@
 
+1.3.0 / 2016-02-11
+==================
+
+  * allow scoping of $.module.search
+  * module refactor
+  * added $.fn.module
+  * only allow one init per el
+  * added $.module.search to search for additional modules.
+  * $(window).on('init.module') fires every time a module is invoked
+
 1.2.0 / 2016-01-06
 ==================
 

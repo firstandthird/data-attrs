@@ -1,6 +1,6 @@
 /*!
  * data-attrs - A few utilities for data attributes
- * v1.1.0
+ * v1.3.0
  * https://github.com/firstandthird/data-attrs
  * copyright First+Third 2016
  * MIT License
@@ -54,20 +54,42 @@
 
   };
 
+  var modules = {};
   $.module = function(name, callback) {
-
-    var mod = $('[data-module=' + name + ']');
-
-    mod.each(function() {
+    if (!modules[name]) {
+      modules[name] = callback;
+    } else {
+      throw new Error(name + ' already exists');
+    }
+    $('[data-module='+name+']').module();
+  };
+  $.fn.module = function() {
+    this.each(function() {
       var el = $(this);
+
+      if (el.data('moduleInit')) {
+        return;
+      }
+
+      var name = el.data('module');
+      if (!modules[name]) {
+        return;
+      }
       var values = el.serializeAttrs('module');
       var els = {};
       el.find('[data-name]').each(function() {
         var subEl = $(this);
         els[subEl.data('name')] = subEl;
       });
-      callback(el, values, els);
+      modules[name](el, values, els);
+      el.data('moduleInit', true);
+      $(window).trigger('init.module', [name, el]);
     });
+
+  };
+  $.module.search = function(root) {
+    root = root || 'body';
+    $(root).find('[data-module]').module();
   };
 
   $.declaritivePlugins = function() {
