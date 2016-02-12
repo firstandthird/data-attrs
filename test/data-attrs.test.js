@@ -304,6 +304,32 @@ describe('data-attrs', function() {
       }, 100);
     });
 
+    it('should allow manually invoking module check with scope - no match ', function(done) {
+      var callCount = 0;
+      $.module('injectedModule2', function(el, values, els) {
+        callCount++;
+      });
+      $('body').append('<div data-module="injectedModule2"></div>');
+      $.module.search('#module-scope');
+      setTimeout(function() {
+        expect(callCount).to.equal(0);
+        done();
+      }, 100);
+    });
+
+    it('should allow manually invoking module check with scope - match', function(done) {
+      var callCount = 0;
+      $.module('injectedModule3', function(el, values, els) {
+        callCount++;
+      });
+      $('#module-scope').append('<div data-module="injectedModule3"></div>');
+      $.module.search('#module-scope');
+      setTimeout(function() {
+        expect(callCount).to.equal(1);
+        done();
+      }, 100);
+    });
+
     it('should trigger $(window).on(init.module) when a module is run', function(done) {
       var initCount = 0;
       var runCount = 0;
