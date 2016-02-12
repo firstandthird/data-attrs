@@ -203,6 +203,11 @@ describe('data-attrs', function() {
   });
 
   describe('module', function() {
+    it('should expose $.module', function(done) {
+      expect(typeof $.module).to.equal('function');
+      done();
+    });
+
     it('should call callback if data-module="name" exists', function(done) {
       $.module('module', function(el, values) {
 
@@ -224,6 +229,14 @@ describe('data-attrs', function() {
         expect(called).to.equal(false);
         done();
       });
+    });
+
+    it('should not allow multiple modules of the same name', function(done) {
+      $.module('dupe', function() {});
+      expect(function() {
+        $.module('dupe', function() {});
+      }).to.throw();
+      done();
     });
 
     it('should call callback for each module that matches name', function(done) {
@@ -252,13 +265,61 @@ describe('data-attrs', function() {
     });
 
     it('should return all data-name elements', function(done) {
-      $.module('module', function(el, values, els) {
+      $.module('moduleName', function(el, values, els) {
 
-        expect(el.attr('id')).to.equal('module');
         expect(els.title).to.not.equal(undefined);
         expect(els.title.text()).to.equal('Title');
         done();
 
+      });
+    });
+
+    it('should expose $.module.search to find new modules', function(done) {
+      expect(typeof $.module.search).to.equal('function');
+      done();
+    });
+
+    it('should only invoke a module once', function(done) {
+      var count = 0;
+      $.module('moduleOnce', function(el, values, els) {
+        count++;
+      });
+      $.module.search();
+      setTimeout(function() {
+        expect(count).to.equal(1);
+        done();
+      });
+    });
+
+    it('should allow manually invoking module check', function(done) {
+      var callCount = 0;
+      $.module('injectedModule', function(el, values, els) {
+        callCount++;
+      });
+      $('body').append('<div data-module="injectedModule"></div>');
+      $.module.search();
+      setTimeout(function() {
+        expect(callCount).to.equal(1);
+        done();
+      }, 100);
+    });
+
+    it('should trigger $(window).on(init.module) when a module is run', function(done) {
+      var initCount = 0;
+      var runCount = 0;
+      $(window).on('init.module', function(e, name, el) {
+        initCount++;
+        expect(typeof e).to.equal('object');
+        expect(typeof name).to.equal('string');
+        expect(typeof el).to.equal('object');
+      });
+      $.module('moduleInit', function() {
+        runCount++;
+      });
+      setTimeout(function() {
+        expect(initCount).to.equal(runCount);
+        $(window).off('init.module');
+        done();
       });
     });
   });
