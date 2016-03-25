@@ -1,6 +1,6 @@
 /*!
  * data-attrs - A few utilities for data attributes
- * v1.3.0
+ * v1.4.0
  * https://github.com/firstandthird/data-attrs
  * copyright First+Third 2016
  * MIT License
@@ -61,7 +61,9 @@
     } else {
       throw new Error(name + ' already exists');
     }
-    $('[data-module='+name+']').module();
+    $(function() {
+      $('[data-module='+name+']').module();
+    });
   };
   $.fn.module = function() {
     this.each(function() {
