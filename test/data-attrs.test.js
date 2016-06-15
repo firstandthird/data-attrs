@@ -45,8 +45,19 @@ describe('data-attrs', function() {
   describe('$.action', function() {
 
     before(function(done) {
-      $('a').off('click');
+      $('a').off('click touchend');
       done();
+    });
+
+    it('should trigger on touch', function(done) {
+      var a = $('[data-action="testtouch"]');
+      $.action('testtouch', function(e) {
+        expect(this.data('action')).to.equal('testtouch');
+        expect(typeof e.preventDefault).to.equal('function');
+        done();
+      });
+
+      a.trigger('touchend');
     });
 
     it('should trigger on click', function(done) {
